@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Puzzle - Privacy Policy</title>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #8b5cf6;
+            --accent-color: #ec4899;
+            --success-color: #10b981;
+            --background-dark: #0f172a;
+            --background-medium: #1e293b;
+            --background-light: #334155;
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-color: #475569;
+            --card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --gradient-accent: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--background-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shape {
+            position: absolute;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+
+        .shape:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-delay: 0s; }
+        .shape:nth-child(2) { width: 120px; height: 120px; left: 80%; animation-delay: 5s; }
+        .shape:nth-child(3) { width: 60px; height: 60px; left: 60%; animation-delay: 10s; }
+        .shape:nth-child(4) { width: 100px; height: 100px; left: 30%; animation-delay: 15s; }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        /* Container and layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 80px 0 60px;
+            background: var(--gradient-primary);
+            margin: 0 -20px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-accent);
+            border-radius: 20px;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            box-shadow: var(--card-shadow);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .last-updated {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-top: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Content sections */
+        .content {
+            padding-bottom: 80px;
+        }
+
+        .section {
+            background: var(--background-medium);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.35);
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .section h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--primary-color);
+        }
+
+        .section p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+
+        .section ul {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .section li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        .section li::before {
+            content: '✓';
+            width: 20px;
+            height: 20px;
+            background: var(--success-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Special sections */
+        .highlight-section {
+            background: var(--gradient-accent);
+            color: var(--text-primary);
+        }
+
+        .highlight-section p {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .highlight-section::before {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Contact card */
+        .contact-card {
+            background: var(--background-light);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            border: 2px solid var(--border-color);
+            margin-top: 24px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 1.1rem;
+        }
+
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 60px 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .header {
+                margin: 0 -16px 40px;
+                padding: 60px 16px 40px;
+            }
+
+            .section {
+                padding: 24px;
+                border-radius: 16px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-info {
+                align-items: center;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Print styles */
+        @media print {
+            .background-animation { display: none; }
+            .section { break-inside: avoid; }
+            .header { background: none !important; color: black !important; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="app-icon">🧩</div>
+            <h1>Neural Puzzle</h1>
+            <p class="subtitle">Privacy Policy - Your Privacy is Our Priority</p>
+            <div class="last-updated">
+                <span>📅</span>
+                <span>Last Updated: [Insert Current Date]</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <main class="content">
+            <!-- Introduction -->
+            <section class="section highlight-section fade-in">
+                <div class="section-header">
+                    <div class="section-icon">🛡️</div>
+                    <h2>Introduction</h2>
+                </div>
+                <p>This Privacy Policy describes how Neural Puzzle ("we," "our," or "us") handles your information when you use our mobile application Neural Puzzle (the "App"). We are committed to protecting your privacy and being transparent about our data practices.</p>
+                <p><strong>TL;DR: We don't collect ANY of your personal data. Neural Puzzle is completely offline and privacy-first.</strong></p>
+            </section>
+
+            <!-- Information We Do NOT Collect -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <div class="section-icon">🚫</div>
+                    <h2>Information We Do NOT Collect</h2>
+                </div>
+                <p>Neural Puzzle is designed as a completely offline application. We want to be absolutely clear about what we do NOT collect:</p>
+                
+                <h3>Personal Information</h3>
+                <ul>
+                    <li>We do NOT collect your name, email address, phone number, or any other personal identifiers</li>
+                    <li>We do NOT collect your device's contact list, photos, or other personal files</li>
+                    <li>We do NOT collect your location data or GPS coordinates</li>
+                    <li>We do NOT collect biometric data or facial recognition information</li>
+                </ul>
+
+                <h3>Usage Data</h3>
+                <ul>
+                    <li>We do NOT track your app usage patterns or gameplay statistics</li>
+                    <li>We do NOT collect information about how long you play or which features you use</li>
+                    <li>We do NOT collect crash reports or technical diagnostics</li>
+                    <li>We do NOT collect device information such as device ID, operating system version, or hardware specifications</li>
+                </ul>
+
+                <h3>Game Data</h3>
+                <ul>
+                    <li>Your game progress, scores, and settings are stored locally on your device only</li>
+                    <li>We do NOT sync your game data to external servers</li>
+                    <li>We do NOT backup your game data to cloud services</li>
+                    <li>We do NOT share your scores or achievements with third parties</li>
+                </ul>
+
+                <h3>Network Activity</h3>
+                <ul>
+                    <li>The app does NOT connect to the internet</li>
+                    <li>We do NOT send any data to external servers</li>
+                    <li>We do NOT receive any data from external sources</li>
+                    <li>The app functions completely offline</li>
+                </ul>
+            </section>
+
+            <!-- Third-Party Services -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <div class="section-icon">🔒</div>
+                    <h2>Third-Party Services</h2>
+                </div>
+                <p>Neural Puzzle does NOT integrate with any third-party services, including:</p>
+                <ul>
+                    <li>Analytics services (such as Google Analytics, Firebase Analytics)</li>
+                    <li>Advertising networks</li>
+                    <li>Social media platforms</li>
+                    <li>Cloud storage services</li>
+                    <li>Crash reporting services</li>
+                </ul>
+            </section>
+
+            <!-- Data Storage -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <div class="section-icon">💾</div>
+                    <h2>Data Storage</h2>
+                </div>
+                <p>All game-related data (such as your current puzzle state, best scores, and game settings) is stored locally on your device using iOS's standard local storage mechanisms. This data:</p>
+                <ul>
+                    <li>Never leaves your device</li>
+                    <li>Is not accessible to us or any third parties</li>
+                    <li>Can be deleted by uninstalling the app</li>
+                    <li>Is not backed up to iCloud or other cloud services unless you specifically enable iOS device backups</li>
+                </ul>
+            </section>
+
+            <!-- Children's Privacy -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <div class="section-icon">👶</div>
+                    <h2>Children's Privacy</h2>
+                </div>
+                <p>Neural Puzzle is safe for users of all ages, including children under 13. Since we do not collect any personal information, there are no special privacy concerns for children. Parents can feel confident that their children's privacy is protected while using our app.</p>
+            </section>
+
+            <!-- App Permissions -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <div class="section-icon">⚙️</div>
+                    <h2>App Permissions</h2>
+                </div>
+                <p>Neural Puzzle does NOT request any of the following permissions:</p>
+                <ul>
+                    <li>Camera access</li>
+                    <li>Microphone access</li>
+                    <li>Photo library access</li>
+                    <li>Location services</li>
+                    <li>Contacts access</li>
+                    <li>Calendar access</li>
+                    <li>Bluetooth connectivity</li>
+                    <li>Network/internet access</li>
+                </ul>
+                <p>The app only uses basic iOS gaming functions that do not require special permissions.</p>
+            </section>
+
+            <!-- Data Security -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <div class="section-icon">🔐</div>
+                    <h2>Data Security</h2>
+                </div>
+                <p>Since Neural Puzzle does not collect, transmit, or store any personal data on external servers, there is no risk of data breaches or unauthorized access to your information through our services. Your local game data is protected by your device's standard security measures.</p>
+            </section>
+
+            <!-- Legal Compliance -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <div class="section-icon">⚖️</div>
+                    <h2>Legal Compliance</h2>
+                </div>
+                <p>This Privacy Policy complies with:</p>
+                <ul>
+                    <li>Apple App Store Privacy Guidelines</li>
+                    <li>General Data Protection Regulation (GDPR)</li>
+                    <li>California Consumer Privacy Act (CCPA)</li>
+                    <li>Children's Online Privacy Protection Act (COPPA)</li>
+                    <li>Other applicable privacy laws worldwide</li>
+                </ul>
+                <p>Since we do not collect personal information, we are inherently compliant with privacy regulations worldwide.</p>
+            </section>
+
+            <!-- Your Rights -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <div class="section-icon">👤</div>
+                    <h2>Your Rights</h2>
+                </div>
+                <p>Since we do not collect personal information, traditional data rights (such as access, deletion, or portability) do not apply. However, you always have the right to:</p>
+                <ul>
+                    <li>Use the app completely anonymously</li>
+                    <li>Delete all local data by uninstalling the app</li>
+                    <li>Contact us with any privacy-related questions</li>
+                </ul>
+            </section>
+
+            <!-- Updates -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <div class="section-icon">🔄</div>
+                    <h2>Updates to This Privacy Policy</h2>
+                </div>
+                <p>We may update this Privacy Policy from time to time to reflect changes in our practices or for legal reasons. Any updates will be posted within the app and will include a new "Last Updated" date. Since we do not collect contact information, we cannot notify you directly of changes.</p>
+            </section>
+
+            <!-- Contact Information -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <div class="section-icon">📧</div>
+                    <h2>Contact Information</h2>
+                </div>
+                <p>If you have any questions about this Privacy Policy or our privacy practices, please contact us:</p>
+                
+                <div class="contact-card">
+                    <h3>Get in Touch</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <span>+855 96 45 66 453</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">💬</span>
+                            <span>thongmakara@vtech.one</span>
+                        </div>
+                    </div>
+                    <p style="margin-top: 24px; font-size: 0.95rem; opacity: 0.8;">
+                        Please note that since we do not collect any data about our users, we cannot provide specific information about any data we might have about you (because we don't have any).
+                    </p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>Privacy-First Gaming</h3>
+            <p>Neural Puzzle is designed with privacy as a fundamental principle. By keeping the app completely offline and avoiding all data collection, we ensure that your privacy is protected at the highest level. You can enjoy our puzzle game with complete confidence that your personal information remains private.</p>
+            <p style="margin-top: 32px; font-size: 0.9rem;">
+                <strong>Neural Puzzle Development Team</strong><br>
+                [Your Company Name] • [Current Date]
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(section);
+        });
+
+        // Smooth reveal on load
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+
+        // Add some interactivity
+        document.querySelectorAll('.section').forEach(section => {
+            section.addEventListener('mouseenter', () => {
+                section.style.background = 'linear-gradient(135deg, #1e293b, #334155)';
+            });
+            
+            section.addEventListener('mouseleave', () => {
+                section.style.background = '#1e293b';
+            });
+        });
+    </script>
+</body>
+</html>
